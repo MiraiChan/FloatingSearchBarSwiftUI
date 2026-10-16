@@ -12,7 +12,7 @@ struct ContentView: View {
   
   var body: some View {
     NavigationStack {
-      ParkListView()
+      ParkListView(query: query)
     }
     .searchable(text: $query, prompt: "Parks or states")
   }
