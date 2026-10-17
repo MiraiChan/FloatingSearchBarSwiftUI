@@ -41,13 +41,11 @@ struct ParkListView: View {
     }
     .navigationTitle("Parks")
     .toolbar {
-      ToolbarItem(placement: .bottomBar) {
+      ToolbarItem(placement: .topBarTrailing) {
         Button("Sort", systemImage: "arrow.up.arrow.down") {
           ascending.toggle()
         }
       }
-      ToolbarSpacer(placement: .bottomBar)
-      DefaultToolbarItem(kind: .search, placement: .bottomBar)
     }
   }
 }

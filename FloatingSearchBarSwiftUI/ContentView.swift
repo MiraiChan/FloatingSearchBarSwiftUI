@@ -14,14 +14,19 @@ struct ContentView: View {
     TabView {
       Tab("Parks", systemImage: "tree") {
         NavigationStack {
-          ParkListView(query: query)
+          ParkListView(query: "")
         }
-        .searchable(text: $query, prompt: "Parks or states")
-        .searchToolbarBehavior(.minimize)
       }
       Tab("Saved", systemImage: "bookmark") {
         ContentUnavailableView("No Saved Parks", systemImage: "bookmark")
       }
+      Tab(role: .search) {
+        NavigationStack {
+          ParkListView(query: query)
+        }
+      }
     }
+    .searchable(text: $query, prompt: "Parks or states")
+    .tabViewSearchActivation(.searchTabSelection)
   }
 }
