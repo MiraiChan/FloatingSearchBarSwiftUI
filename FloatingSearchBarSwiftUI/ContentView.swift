@@ -11,11 +11,17 @@ struct ContentView: View {
   @State private var query = ""
   
   var body: some View {
-    NavigationStack {
-      ParkListView(query: query)
+    TabView {
+      Tab("Parks", systemImage: "tree") {
+        NavigationStack {
+          ParkListView(query: query)
+        }
+        .searchable(text: $query, prompt: "Parks or states")
+        .searchToolbarBehavior(.minimize)
+      }
+      Tab("Saved", systemImage: "bookmark") {
+        ContentUnavailableView("No Saved Parks", systemImage: "bookmark")
+      }
     }
-    .searchable(text: $query, prompt: "Parks or states")
   }
 }
-
-

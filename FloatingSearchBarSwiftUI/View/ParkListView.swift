@@ -19,7 +19,10 @@ struct ParkListView: View {
         || park.name.localizedStandardContains(query)
         || park.state.localizedStandardContains(query)
       }
-      .sorted { ascending ? $0.name < $1.name : $0.name > $1.name }
+      .sorted { ascending
+        ? $0.name < $1.name
+        : $0.name > $1.name
+      }
   }
   var body: some View {
     List(results) { park in
@@ -37,5 +40,14 @@ struct ParkListView: View {
       }
     }
     .navigationTitle("Parks")
+    .toolbar {
+      ToolbarItem(placement: .bottomBar) {
+        Button("Sort", systemImage: "arrow.up.arrow.down") {
+          ascending.toggle()
+        }
+      }
+      ToolbarSpacer(placement: .bottomBar)
+      DefaultToolbarItem(kind: .search, placement: .bottomBar)
+    }
   }
 }
